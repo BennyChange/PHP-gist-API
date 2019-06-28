@@ -3,7 +3,7 @@ Github Gists PHP API
 
 Github Gists PHP API is a light-weight object Oriented wrapper for Github Gist API.
 
-  - Built on **php5**
+  - Required: **PHP 5 or higher**
   - Uses **Github API v3**
   - **Easy to Use Helper Class** for updating Gists
 
@@ -80,16 +80,20 @@ $Gist = $gistAPI->getGist(":gist_id");
 ### Create a Gist
 ```php
 //Create a new Public Gist with a Description
-$filesArray = array("file1.txt" => 
-                        array("content" => "Some Random Content"),
-                    "file2.php" =>
-                        array("content" => "<?php echo \"Content\"; ?>"),
-                    );
-//Create A New Public Gist
-$newGist = $gistAPI->createGist($filesArray, "Some Random Description", true);
+
+function create_githubgist($title, $text, $public = false) {
+
+    global $gistAPI;
+
+    //Create A New Public Gist
+    $newGist = $gistAPI->createGist($title.'.article', 'Created by TEST', $text, $public);
+
+    return $newGist;
+
+}
 
 //Create A New Private Gist
-$newGist = $gistAPI->createGist($filesArray, "Some Random Description", false);
+$newGist = create_githubgist('TITLETEST', 'TEXT TEST', false);
 
 // Note: $filesArray can be created in a simpler way using the Helper Class (GistEdit) explained later.
 ```
