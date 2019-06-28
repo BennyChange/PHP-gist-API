@@ -1,5 +1,8 @@
 <?php
 
+/*error_reporting(E_ALL);
+ini_set('display_errors', 1);*/
+
 class GistEdit {
 
 	private $data;
@@ -89,17 +92,16 @@ class gistAPI {
 	
 	}
 	
-	public function createGist ($files, $description = "", $public = false) {
+	public function createGist ($files, $description = "", $content = "", $public = false) {
 	
-		$filesArray = array();
-		foreach ($files as $fileName => $content)
-			$filesArray[$fileName]['content'] = $content;
-		$postArray = array(
-					"files"		  => $filesArray,
-					"description" => $description,
-					"public"	  => $public
-					);
-		$jsonArray = json_encode($postArray);
+
+   		 $jsonArray = json_encode([
+        	'description' => $description,
+        	'public'      => $public,
+        	'files'       => [
+            					$files => ['content' => $content],
+        					],
+    	]);
 		
 		curl_setopt($this->ch, CURLOPT_URL, $this->url . "/gists");
 		curl_setopt($this->ch, CURLOPT_POST, 1);
