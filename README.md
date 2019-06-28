@@ -95,7 +95,8 @@ function create_githubgist($title, $text, $public = false) {
 //Create A New Private Gist
 $newGist = create_githubgist('TITLETEST', 'TEXT TEST', false);
 
-// Note: $filesArray can be created in a simpler way using the Helper Class (GistEdit) explained later.
+// Echo Test
+echo '<pre>' . var_export($newGist, true) . '</pre>';
 ```
 ### Edit a Gist
 ```php
