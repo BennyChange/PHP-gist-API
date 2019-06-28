@@ -101,28 +101,23 @@ echo $newGist['body']['html_url'];
 ```
 ### Edit a Gist
 ```php
-$filesArray = array("file1.txt" => 
-                        array("content" => "Updated File Contents"),
-                    "old_name.txt" =>
-                        array("filename" => "new_name.txt",
-                              "content"  => "Updated File Contents"),
-                    "delete_this_file.txt"=> null
-                    );
-//Edit The Files And Description
-$editGist = $gistAPI->editGist(":gist_id", $filesArray, "Some Random NEW Description"); 
 
-//Edit Only the Files
-$editGist = $gistAPI->editGist(":gist_id", $filesArray);
+function edit_githubgist($title, $text) {
 
-//Edit only the Description
-$editGist = $gistAPI->editGist(":gist_id", NULL, "Some Random NEW Description"); 
-```
-```php
-// Creating the same $fileArray above using Helper Class(Full Guide at Bottom) :
-$filesArray = GistEdit::init()
-                ->edit("file1.txt", "Updated File Contents")
-                ->edit("old_name.txt", "Updated File Contents", "new_name.txt")
-                ->deleteFile("delete_this_file.txt");
+    global $gistAPI;
+    
+    //Edit The File And Description And Content
+    $editGist = $gistAPI->editGist(":gist_id", $title.'.article', $title, $text); 
+
+    return $editGist;
+
+}
+
+$newGist = edit_githubgist('TITLEEDITTEST', 'TEXT TEST EDIT');
+
+// Echo Test
+echo '<pre>' . var_export($newGist, true) . '</pre>';
+echo $newGist['body']['html_url'];
 ```
 ### List Gist Commits
 ```php
