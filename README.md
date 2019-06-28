@@ -97,6 +97,7 @@ $newGist = create_githubgist('TITLETEST', 'TEXT TEST', false);
 
 // Echo Test
 echo '<pre>' . var_export($newGist, true) . '</pre>';
+echo $newGist['body']['html_url'];
 ```
 ### Edit a Gist
 ```php
