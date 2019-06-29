@@ -153,6 +153,12 @@ $listForks = $gistAPI->listForkGist(":gist_id");
 ```php
 // Delete a Gist
 $delete = $gistAPI->deleteGist(":gist_id");
+
+if(preg_match('/^204 No Content/im', $delete['header']['Status'])) {
+    echo "Success";
+} else {
+	echo "Failed";
+}
 ```
 ## Comments
 
