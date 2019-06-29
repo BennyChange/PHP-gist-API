@@ -2,11 +2,13 @@ Github Gists PHP API
 =======
 
 Github Gists PHP API is a light-weight object Oriented wrapper for Github Gist API.
+
 Github Gists PHP API ist ein leichtgewichtiger objektorientierter Wrapper für die Github Gist API.
 
   - Required: **PHP 5 or higher**
   - Uses **Github API v3**
   - **Easy to Use Helper Class** for updating Gists
+  
   
   - Erforderlich: **PHP 5 oder höher**
   - Verwendet **Github API v3**
