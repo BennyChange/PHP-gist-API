@@ -2,10 +2,15 @@ Github Gists PHP API
 =======
 
 Github Gists PHP API is a light-weight object Oriented wrapper for Github Gist API.
+Github Gists PHP API ist ein leichtgewichtiger objektorientierter Wrapper für die Github Gist API.
 
   - Required: **PHP 5 or higher**
   - Uses **Github API v3**
   - **Easy to Use Helper Class** for updating Gists
+  
+  - Erforderlich: **PHP 5 oder höher**
+  - Verwendet **Github API v3**
+  - **Einfach zu bedienende Helferklasse** für die Aktualisierung der Gists
 
 
 
@@ -32,17 +37,20 @@ $ouput = $gistAPI->createGist($filesArray);
 ```
 
 # Functions
+# Funktionen
 
 Basic Usage
+Grundlegende Verwendung
 ------------
 
 ```php
 require_once('_PATH_/gists_api.php');
 
-$gistAPI = new gistAPI(); //To Authenticate anonymous
+$gistAPI = new gistAPI(); //To Authenticate anonymous / So authentifizieren Sie sich anonym
 
 
 // To Authenticate with Github Username and Password
+// So authentifizieren Sie sich mit Github-Benutzername und Passwort
 $gistAPI = new gistAPI($github_ID, $github_Password);
 
 ```
@@ -78,21 +86,24 @@ $Gist = $gistAPI->getGist(":gist_id");
 ```
 
 ### Create a Gist
+### Erstellen Sie ein Gist
 ```php
-//Create a new Public Gist with a Description
-
+//Create a new Secret Gist with a Description
+//Erstellen eines neuen Geheimen Gist mit einer Beschreibung
 function create_githubgist($title, $text, $public = false) {
 
     global $gistAPI;
 
-    //Create A New Public Gist
+    //Create A New Secret Gist
+    //Erstelle einen neuen geheimen Gist
     $newGist = $gistAPI->createGist($title.'.article', 'Created by TEST', $text, $public);
 
     return $newGist;
 
 }
 
-//Create A New Private Gist
+    //Create A New Secret Gist
+    //Erstelle einen neuen geheimen Gist
 $newGist = create_githubgist('TITLETEST', 'TEXT TEST', false);
 
 // Echo Test
@@ -107,6 +118,7 @@ function edit_githubgist($title, $text) {
     global $gistAPI;
     
     //Edit The File And Description And Content
+    //Bearbeiten der Datei und Beschreibung und Inhalt
     $editGist = $gistAPI->editGist(":gist_id", $title.'.article', $title, $text); 
 
     return $editGist;
@@ -152,6 +164,7 @@ $listForks = $gistAPI->listForkGist(":gist_id");
 ### Delete a Gist
 ```php
 // Delete a Gist
+// Lösche einen Gist
 $delete = $gistAPI->deleteGist(":gist_id");
 
 if(preg_match('/^204 No Content/im', $delete['header']['Status'])) {
